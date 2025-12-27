@@ -5,9 +5,9 @@ import logging
 import time
 import random # Import the random library
 
-from .config import Config
-from .database import MeshtasticDB
-from .mqtt_client import MQTTClient
+from dcnbot.config.config import Config
+from dcnbot.database.database import MeshtasticDB
+from dcnbot.client.mqtt.mqtt_client import MQTTClient
 
 async def main():
     """The main entry point for the CLI."""

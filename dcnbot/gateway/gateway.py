@@ -1,9 +1,9 @@
 # mtg/gateway.py
 import asyncio
 import logging
-from .config import Config
-from .database import MeshtasticDB
-from .mqtt_client import MQTTClient
+from dcnbot.config.config import Config
+from dcnbot.database.database import MeshtasticDB
+from dcnbot.client.mqtt.mqtt_client import MQTTClient
 from .telegram_bot import TelegramBot
 
 async def main():
