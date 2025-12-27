@@ -18,7 +18,7 @@ from meshtastic.protobuf import mesh_pb2, mqtt_pb2, portnums_pb2
 if TYPE_CHECKING:
     from dcnbot.config.config import Config
     from dcnbot.database.database import MeshtasticDB
-    from dcnbot.gateway.telegram_bot import TelegramBot
+    from dcnbot.client.telegram.telegram_bot import TelegramBot
 
 logging.basicConfig(
     level=logging.INFO,

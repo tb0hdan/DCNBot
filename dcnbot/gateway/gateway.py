@@ -9,7 +9,7 @@ from dcnbot.client.mqtt.mqtt_client import MQTTClient
 from dcnbot.config.config import Config
 from dcnbot.database.database import MeshtasticDB
 
-from .telegram_bot import TelegramBot
+from dcnbot.client.telegram.telegram_bot import TelegramBot
 
 
 async def main() -> None:

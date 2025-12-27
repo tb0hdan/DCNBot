@@ -9,7 +9,7 @@ import logging
 class Config:
     """Configuration loader and accessor for gateway settings."""
 
-    def __init__(self, config_path: str = 'config.ini') -> None:
+    def __init__(self, config_path: str = 'configs/config.ini') -> None:
         self.config_path = config_path
         self.parser = configparser.ConfigParser()
         self.read()
