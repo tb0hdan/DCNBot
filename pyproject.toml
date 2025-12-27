@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dcnbot"
+version = "0.1.0"
+description = "DCN Bot - Meshtastic to Telegram gateway"
+requires-python = ">=3.10"
+dependencies = [
+    "aiomqtt",
+    "cryptography",
+    "meshtastic",
+]
+
+[project.optional-dependencies]
+dev = [
+    "mypy",
+    "pylint",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+]
+
+[project.scripts]
+dcnbot-cli = "dcnbot.cli.cli:run_cli"
+
+[tool.pylint.format]
+max-line-length = 100
+
+[tool.setuptools.packages.find]
+include = ["dcnbot*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["dcnbot"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+explicit_package_bases = true
+exclude = "(?x)(conftest.py|test_gith.py)"
+ignore_missing_imports = true
+
+[tool.pylint.'MASTER']
+ignore-patterns='(.)*_test\.py,test_(.)*\.py,conftest.py'
+jobs=0
+
+[tool.pylint.'FORMAT']
+max-line-length=120
+
+[tool.pylint.'MESSAGES CONTROL']
+disable="import-error,wrong-import-order,too-many-lines,too-few-public-methods,invalid-name,no-name-in-module,no-member,too-many-arguments,too-many-positional-arguments,too-many-instance-attributes,too-many-locals,broad-exception-caught"

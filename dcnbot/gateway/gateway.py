@@ -1,20 +1,29 @@
-# mtg/gateway.py
+"""Main gateway module for the Meshtastic-Telegram bridge."""
+
+from __future__ import annotations
+
 import asyncio
 import logging
+
+from dcnbot.client.mqtt.mqtt_client import MQTTClient
 from dcnbot.config.config import Config
 from dcnbot.database.database import MeshtasticDB
-from dcnbot.client.mqtt.mqtt_client import MQTTClient
+
 from .telegram_bot import TelegramBot
 
-async def main():
+
+async def main() -> None:
     """The main entry point for the gateway."""
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
     logging.info("Logging initialized.")
 
     # Define components in the outer scope to access them in the finally block
     db = None
     bot = None
-    
+
     try:
         # Initialize components
         config = Config(config_path='config.ini')
@@ -29,7 +38,7 @@ async def main():
 
         # Start services
         logging.info("Gateway is fully running. Press Ctrl+C to exit.")
-        
+
         # Run MQTT client and Telegram bot concurrently
         await asyncio.gather(
             mqtt.run(),
@@ -38,16 +47,16 @@ async def main():
 
     except (KeyboardInterrupt, asyncio.CancelledError):
         logging.info("Gateway shutting down...")
-    except Exception as e:
-        logging.error(f"An unexpected error occurred: {e}", exc_info=True)
+    except Exception:
+        logging.exception("An unexpected error occurred")
     finally:
-        # --- CORRECTED SHUTDOWN LOGIC ---
         # Gracefully stop the Telegram bot first to clean up its tasks.
         if bot:
             await bot.stop()
         # Then, close the database connection.
         if db:
             db.close()
+
 
 if __name__ == "__main__":
     try:

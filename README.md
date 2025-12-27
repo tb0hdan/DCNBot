@@ -115,7 +115,7 @@ To run the full Telegram bridge continuously, set it up as a `systemd` service.
     [Service]
     User=dcn1
     WorkingDirectory=/home/dcn1/Documents/meshtastic-telegram-gateway
-    ExecStart=/home/dcn1/Documents/meshtastic-telegram-gateway/venv/bin/python -m mtg.gateway
+    ExecStart=/home/dcn1/Documents/meshtastic-telegram-gateway/venv/bin/python -m dcnbot.gateway.gateway
     Restart=always
     RestartSec=5
 
@@ -139,14 +139,14 @@ The CLI allows you to send messages and manage nodes directly from your server's
     This command displays a formatted table of all nodes stored in the database.
 
     ```bash
-    python -m mtg.cli nodes
+    python -m dcnbot.cli.cli nodes
     ```
 
   * **Send a Broadcast Message**
     This sends a message to everyone on the mesh. The message appears to come from the gateway node itself.
 
     ```bash
-    python -m mtg.cli send This is a test broadcast from the command line.
+    python -m dcnbot.cli.cli send This is a test broadcast from the command line.
     ```
 
   * **Send a Direct Message (DM)**
@@ -154,8 +154,8 @@ The CLI allows you to send messages and manage nodes directly from your server's
 
     ```bash
     # By name
-    python -m mtg.cli dm Jay Hello from the CLI!
+    python -m dcnbot.cli.cli dm Jay Hello from the CLI!
 
     # By hex ID
-    python -m mtg.cli dm !da5c80d4 This is a direct message via hex ID.
+    python -m dcnbot.cli.cli dm !da5c80d4 This is a direct message via hex ID.
     ```

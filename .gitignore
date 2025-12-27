@@ -209,3 +209,6 @@ __marimo__/
 # pipenv
 Pipfile
 Pipfile.lock
+
+# Project extra
+dcnbot.egg-info

@@ -1,10 +1,10 @@
 all: lint mypy test
 
 lint:
-	@pylint -r y -j 0 llmc/
+	@pylint -r y -j 0 dcnbot/
 
 mypy:
-	@mypy llmc/
+	@mypy dcnbot/
 
 test:
-	@pytest llmc/
+	@pytest dcnbot/
